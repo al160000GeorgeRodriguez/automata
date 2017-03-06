@@ -21,7 +21,7 @@ eregular::eregular()
 {
 	
  } 
-eregular::dibujar()
+void eregular::dibujar()
 {
 	
  } 

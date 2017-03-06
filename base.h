@@ -5,7 +5,7 @@ class eregular
 	public:
 		eregular();
 		void dibujar();
-}
+};
 
 class transicion
 {
