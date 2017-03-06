@@ -1,5 +1,12 @@
 #ifndef BASE_H
 #define BASE_H
+class eregular
+{
+	public:
+		eregular();
+		void dibujar();
+}
+
 class transicion
 {
 	public:

@@ -17,6 +17,14 @@ void trianguloflecha(float x1, float y1, float radio, float angulo);
 void triangulo(float x1, float y1, float radio, float angulo);/* genera un triangulo inscrito con uno de sus vertices en 0 grados*/
 void flecha(float x1, float y1, float x2, float y2);/* genera una flecha, ésta servirá para enlazar nodos*/
 
+eregular::eregular()
+{
+	
+ } 
+eregular::dibujar()
+{
+	
+ } 
 transicion::transicion()
 {
 	x1=0;

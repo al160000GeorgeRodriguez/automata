@@ -41,6 +41,3 @@ tran.funcionT(edos[1],"2",edos[3]);
 }
 
 
-
-
-
