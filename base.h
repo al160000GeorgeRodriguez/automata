@@ -20,15 +20,18 @@ class transicion
 class estado
 {
 	public:
-		estado(); //constructor;
-		float x,y; //coordenadas
+		estado(); //constructor del objeto
+		float x,y; //coordenadas del objeto
 		
 		//char *nombre; //nombre del nodo
 		int tipo; //tipo de nodo 1:normal, 2:inicial, 3:aceptación
 		void dibujarestado(int color,const std::string& nombre);
+		/*std::string*/ char *ID;
 		int colorN;
 		bool simetrico;
 		bool reflexivo;
+		char entrantes[];
+		char salientes[];
 		private:
 		void Inicial(const std::string& nom);
 		void Normal(const std::string& nom);
@@ -42,7 +45,8 @@ class fTransicion
 	void funcionT(estado edoOrigen, const std::string& cadena, estado edoDestino);
 	transicion enlace;
 	private:
-	bool comprobarReflexion(estado Origen, estado Destino );
+	bool comprobarReflexion(estado Origen, estado Destino ); //Comprueba si el nodo apunta hacia si mismo
+	bool comprobarSimetria(estado Origen, estado Destino ); // Comprueba la simetría y devuelve los identificadores en una cadena
 		};
 	
 	#endif

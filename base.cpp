@@ -15,7 +15,7 @@ int contador1,contador2=0;
 
 
 enum {
-	NORMAL,INICIAL,ACEPTACION
+NONE,NORMAL,INICIAL,ACEPTACION
 };
 enum {
 	REFLEXIVO,NO_SIMETRICO,SIMETRICO
@@ -83,6 +83,7 @@ void transicion::flecha(const std::string& tex, int tipo) //Es una flecha con el
 		
 		else
 		{
+			//if 
 			float magn,dire,xaux,yaux,xaux2,yaux2;
 			magn=dire=xaux=yaux=xaux2=yaux2=0;
 			rectangularPolar(x1,y1,x2,y2,magn,dire);
@@ -105,10 +106,16 @@ estado::estado()
 	tipo=1;
 	colorN=BLANCO;
 	dibujarestado(colorN," "); 
+//	ID="X";
 	}
-void estado::dibujarestado(int color,const std::string& nombre)
+void estado::dibujarestado(int color,const std::string &nombre)
 {
+
 	colorN=color;
+	ID=(char *)nombre.c_str();  //Forza la conversión de tipos para asignar la variable ID
+//	strcpy(ID,nombre.c_str());
+    contador1=contador1+50;
+	texto(150+contador1,450,ID);
 	switch(tipo)
 	{
 	case 1:	Inicial(nombre.c_str()); 
@@ -165,6 +172,10 @@ fTransicion::fTransicion()
 				return true;
 			}
 		}
+	bool fTransicion::comprobarSimetria(estado Origen, estado Destino )
+	{
+		
+	}
 		
 	void fTransicion::funcionT(estado edoOrigen,const std::string& cadena, estado edoDestino)
 		{
@@ -179,32 +190,41 @@ fTransicion::fTransicion()
 				enlace.x2=edoDestino.x;
 				enlace.y2=edoDestino.y;
 				edoDestino.colorN=BLANCO;
+				//strcat(edoOrigen.entrantes,edoDestino.ID);   //Guarda el ID del nodo para su comparación posterior
+				//strcat(edoDestino.salientes,edoDestino.ID);
 				
 			if (comprobarReflexion(edoOrigen,edoDestino))
 				{
 					enlace.flecha(cadena.c_str(),REFLEXIVO);
 					texto(10+contador1,400,"V");
 					
-					
 				//	texto(10+contador1,400,cordx);
 					contador1=contador1+50;
 				}
 				else
-				{
-					enlace.flecha(cadena.c_str(),NO_SIMETRICO);	
-					texto(10+contador1,400,"F");
-					contador1=contador1+50;
+				 {
+						if(comprobarSimetria(edoOrigen,edoDestino)){
+							enlace.flecha(cadena.c_str(),NO_SIMETRICO);	
+							texto(10+contador1,400,"F");
+							contador1=contador1+50;
+						}
+						else 
+						{
+							enlace.flecha(cadena.c_str(),SIMETRICO);	
+							texto(10+contador1,400,"F");
+							contador1=contador1+50;
+						}
+				
 				}
-			
-
+						
 		}
 
-float RGrados(float radian)
+float RGrados(float radian) //Convierte una cantidad de  radianes a grados
 {
 return radian*180/PI;
 	
 }
-float GRadian(float grados)
+float GRadian(float grados) //Convierte una cantidad en grados a radianes
 {
 return grados*PI/180;	
 }
@@ -301,4 +321,7 @@ void bezier(int x0,int y0,int x1,int y1,int x2,int y2,int x3,int y3)
 char *numATexto(float numero)
 {
 	int n=sizeof(trunc(numero));
+	int i,j;
+	
+	
 }
