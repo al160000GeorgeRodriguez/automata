@@ -26,7 +26,7 @@ class estado
 		//char *nombre; //nombre del nodo
 		int tipo; //tipo de nodo 1:normal, 2:inicial, 3:aceptación
 		void dibujarestado(int color,const std::string& nombre);
-		/*std::string*/ char *ID;
+		char *ID;
 		int colorN;
 		bool simetrico;
 		bool reflexivo;

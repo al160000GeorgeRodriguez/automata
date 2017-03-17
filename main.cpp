@@ -20,23 +20,23 @@ int main()
 edos[1].x=200;
 edos[1].y=350;
 edos[1].tipo=1;
-edos[1].dibujarestado(BLANCO,"C");
+edos[1].dibujarestado(BLANCO,"A");
 
 edos[2].x=550;
 edos[2].y=150;
 edos[2].tipo=2;
-edos[2].dibujarestado(BLANCO,"D");
+edos[2].dibujarestado(BLANCO,"B");
 
 edos[3].x=350;
 edos[3].y=150;
 edos[3].tipo=2;
 //edos[3].ID="A";
-edos[3].dibujarestado(BLANCO,"A");
+edos[3].dibujarestado(BLANCO,"C");
 
 edos[4].x=600;
 edos[4].y=350;
 edos[4].tipo=3;
-edos[4].dibujarestado(BLANCO,"K");
+edos[4].dibujarestado(BLANCO,"D");
 
 edos[5].x=200;
 edos[5].y=200;
@@ -48,6 +48,7 @@ tran.funcionT(edos[1],"2",edos[3]);
 tran.funcionT(edos[4],"1",edos[3]);
 tran.funcionT(edos[5],"2",edos[3]);
 tran.funcionT(edos[5],"2",edos[5]);
+tran.funcionT(edos[3],"2",edos[5]);
 	refresca();
 	return 0;
 }

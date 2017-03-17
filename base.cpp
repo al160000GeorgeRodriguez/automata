@@ -106,7 +106,6 @@ estado::estado()
 	tipo=1;
 	colorN=BLANCO;
 	dibujarestado(colorN," "); 
-//	ID="X";
 	}
 void estado::dibujarestado(int color,const std::string &nombre)
 {
@@ -114,8 +113,9 @@ void estado::dibujarestado(int color,const std::string &nombre)
 	colorN=color;
 	ID=(char *)nombre.c_str();  //Forza la conversión de tipos para asignar la variable ID
 //	strcpy(ID,nombre.c_str());
-    contador1=contador1+50;
-	texto(150+contador1,450,ID);
+   // texto(55+contador1,450,edoOrigen.ID);
+   contador1+=50;
+				texto(75+contador1,350,ID);
 	switch(tipo)
 	{
 	case 1:	Inicial(nombre.c_str()); 
@@ -129,6 +129,7 @@ void estado::dibujarestado(int color,const std::string &nombre)
 
 void estado::Inicial(const std::string& nom)
 {
+	
 	flecha(x-(TCIRCULO+55),y,x-(TCIRCULO+5),y);
 	color(colorN);
 	circulo(x,y,TCIRCULO);
@@ -167,6 +168,7 @@ fTransicion::fTransicion()
 	
 	bool fTransicion::comprobarReflexion(estado Origen, estado Destino )
 		{
+			
 			if ((Origen.x==Destino.x) & (Destino.y==Origen.y))
 			{
 				return true;
@@ -175,14 +177,16 @@ fTransicion::fTransicion()
 	bool fTransicion::comprobarSimetria(estado Origen, estado Destino )
 	{
 		
+		for (int i=0;strlen(Origen.entrantes);i++)
+		{
+			if (Origen.entrantes[i]==*Destino.ID){
+				return true;
+			}
+		}
 	}
 		
 	void fTransicion::funcionT(estado edoOrigen,const std::string& cadena, estado edoDestino)
 		{
-			
-				if (!(edoOrigen.reflexivo)) {
-				edoOrigen.reflexivo=comprobarReflexion(edoOrigen,edoDestino);
-				}
 				
 				enlace.x1=edoOrigen.x;
 				enlace.y1=edoOrigen.y;
@@ -190,13 +194,25 @@ fTransicion::fTransicion()
 				enlace.x2=edoDestino.x;
 				enlace.y2=edoDestino.y;
 				edoDestino.colorN=BLANCO;
-				//strcat(edoOrigen.entrantes,edoDestino.ID);   //Guarda el ID del nodo para su comparación posterior
-				//strcat(edoDestino.salientes,edoDestino.ID);
+					contador1=contador1+50;
+				texto(50+contador1,450,"(");
+				texto(55+contador1,450,edoOrigen.ID);
+				texto(75+contador1,450,edoDestino.ID);
+				texto(90+contador1,450,")");
+				texto(55+contador1,500,edoOrigen.entrantes);
+				texto(175+contador1,500,edoDestino.salientes);
+				strcat(edoOrigen.entrantes,edoOrigen.ID);   //Guarda el ID del nodo para su comparación posterior
+				strcat(edoDestino.salientes,edoDestino.ID);
+			
+				
+				if (!(edoOrigen.reflexivo)) {
+				edoOrigen.reflexivo=comprobarReflexion(edoOrigen,edoDestino);
+				}
 				
 			if (comprobarReflexion(edoOrigen,edoDestino))
 				{
 					enlace.flecha(cadena.c_str(),REFLEXIVO);
-					texto(10+contador1,400,"V");
+					texto(10+contador1,400,"R");
 					
 				//	texto(10+contador1,400,cordx);
 					contador1=contador1+50;
@@ -205,13 +221,13 @@ fTransicion::fTransicion()
 				 {
 						if(comprobarSimetria(edoOrigen,edoDestino)){
 							enlace.flecha(cadena.c_str(),NO_SIMETRICO);	
-							texto(10+contador1,400,"F");
+							texto(10+contador1,400,"NS");
 							contador1=contador1+50;
 						}
 						else 
 						{
 							enlace.flecha(cadena.c_str(),SIMETRICO);	
-							texto(10+contador1,400,"F");
+							texto(10+contador1,400,"S");
 							contador1=contador1+50;
 						}
 				
