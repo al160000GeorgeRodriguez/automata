@@ -24,7 +24,7 @@ class estado
 		float x,y; //coordenadas del objeto
 		
 		//char *nombre; //nombre del nodo
-		int tipo; //tipo de nodo 1:normal, 2:inicial, 3:aceptación
+		int tipo; //tipo de nodo 0:inicial y aceptación] 1:normal, 2:inicial, 3:aceptación
 		void dibujarestado(int color,const std::string& nombre);
 		char *ID;
 		int colorN;
@@ -33,6 +33,7 @@ class estado
 		char entrantes[];
 		char salientes[];
 		private:
+		void InicialAceptacion(const std::string& nom);
 		void Inicial(const std::string& nom);
 		void Normal(const std::string& nom);
 		void Aceptacion(const std::string& nom);
